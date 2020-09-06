@@ -50,7 +50,6 @@ var (
 )
 
 // service
-
 var (
 	ServiceNotFound = ErrHandler{400, "service not found"}
 )
@@ -60,6 +59,5 @@ func HandlerOwnErr(r *gin.Context, res ErrHandler) {
 }
 
 func HandleErr(r *gin.Context, err error) {
-	// Err 返回不了,why,太长了??????
-	r.JSON(400, err)
+	r.JSON(400, err.Error())
 }

@@ -24,5 +24,5 @@ if git status >/dev/null 2>&1 ; then
 fi
 
 ### 编译项目
-GO_LDFLAGS="$GO_LDFLAGS -X dsight/common/version.commitVersion=$GIT_COMMIT_VERSION"
+#GO_LDFLAGS="$GO_LDFLAGS -X dsight/common/version.commitVersion=$GIT_COMMIT_VERSION"
 go build -ldflags "$GO_LDFLAGS" -o $PROJECT_NAME $PROJECT_MAIN

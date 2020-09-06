@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 
 	"daily/service/issues"
@@ -27,6 +28,10 @@ func IssuesUpdate(ctx *gin.Context) {
 	var input issues.IssueInput
 	if err := ctx.ShouldBind(&input); err != nil {
 		apierr.HandleErr(ctx, err)
+		return
+	}
+	if input.FinishIf {
+		apierr.HandleErr(ctx, errors.New("已完成的任务不支持修改"))
 		return
 	}
 	if err := issues.IssueController.Update(input.Id, input); err != nil {

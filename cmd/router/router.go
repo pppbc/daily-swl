@@ -10,7 +10,7 @@ import (
 func InitRouter() {
 	router := gin.Default()
 
-	router.POST("/daily/login", handler.Login)
+	router.GET("/daily/login", handler.Login)
 
 	// token校验
 	//rt := router.Group("/daily", middleware.MiddlewareImpl)
@@ -27,7 +27,7 @@ func InitRouter() {
 	// 每日事项
 	iGroup := rt.Group("/issues")
 	{
-		iGroup.GET("", handler.IssuesDetail)
+		//iGroup.GET("", handler.IssuesDetail)
 		iGroup.POST("", handler.IssuesCreate)
 		iGroup.PUT("", handler.IssuesUpdate)
 		iGroup.DELETE("", handler.IssuesDelete)

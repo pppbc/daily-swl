@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"database/sql"
 	"errors"
 	"fmt"
 	"math/rand"
@@ -23,7 +24,12 @@ func Login(ctx *gin.Context) {
 		return
 	}
 	var output users.UserOutput
-	if err := users.UserController.FindByName(params, &output); err != nil {
+	err = users.UserController.FindByName(params, &output)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			apierr.HandleErr(ctx, errors.New("用户名不存在"))
+			return
+		}
 		apierr.HandleErr(ctx, err)
 		return
 	}
@@ -40,9 +46,10 @@ func Login(ctx *gin.Context) {
 }
 
 func UsersDetail(ctx *gin.Context) {
-	userId, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
+	userId, err := strconv.ParseInt(ctx.Query("id"), 10, 64)
 	if err != nil {
 		apierr.HandleErr(ctx, err)
+		return
 	}
 
 	var output users.UserOutput
@@ -69,7 +76,7 @@ func UsersUpdate(ctx *gin.Context) {
 
 func UploadAvatar(ctx *gin.Context) {
 	file, _ := ctx.FormFile("file")
-	userId, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
+	userId, err := strconv.ParseInt(ctx.Query("id"), 10, 64)
 	if err != nil {
 		apierr.HandleErr(ctx, err)
 		return

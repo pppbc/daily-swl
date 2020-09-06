@@ -15,8 +15,8 @@ type IssueModels struct {
 }
 
 type IssueParam struct {
-	Time   string `json:"time" param:"time"`
-	UserId int64  `json:"user_id" param:"user_id"`
+	Time   string `json:"time"  form:"time"`
+	UserId int64  `json:"user_id"  form:"user_id"`
 }
 
 type IssueInput struct {
@@ -40,7 +40,7 @@ type IssueOutput struct {
 	Time     string `json:"time" db:"time"`
 	FinishIf bool   `json:"finish_if" db:"finish_if"`
 	CheckIf  bool   `json:"check_if" db:"check_if"`
-	CheckId  int64  `json:"check_id" db:"check_id"`
+	CheckId  *int64 `json:"check_id" db:"check_id"`
 	CreateAt string `json:"create_at" db:"create_at"`
 	UpdateAt string `json:"update_at" db:"update_at"`
 }

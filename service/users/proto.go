@@ -30,11 +30,11 @@ type UserInput struct {
 
 // 修改信息
 type UserOutput struct {
-	Id       int64  `json:"id" db:"id"`
-	Name     string `json:"name" db:"name"`
-	Avatar   string `json:"avatar" db:"avatar"`
-	Password string `json:"password" db:"password"`
-	Sex      int    `json:"sex" db:"sex"`
-	CreateAt string `json:"create_at" db:"create_at"`
-	LoginAt  string `json:"login_at" db:"login_at"`
+	Id       int64   `json:"id" db:"id"`
+	Name     string  `json:"name" db:"name"`
+	Avatar   string  `json:"avatar" db:"avatar"`
+	Password string  `json:"password" db:"password"`
+	Sex      int     `json:"sex" db:"sex"`
+	CreateAt string  `json:"create_at" db:"create_at"`
+	LoginAt  *string `json:"login_at" db:"login_at"`
 }

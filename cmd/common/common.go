@@ -1,3 +1,3 @@
 package common
 
-var ConfigPath = "../hack/conf/config.ini"
+var ConfigPath = "./daily-swl.ini"
