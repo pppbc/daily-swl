@@ -14,6 +14,7 @@ import (
 	"daily/service/users"
 	"daily/utils/apires"
 	"daily/utils/apires/apierr"
+	"daily/utils/safes"
 )
 
 func Login(ctx *gin.Context) {
@@ -37,12 +38,20 @@ func Login(ctx *gin.Context) {
 		apierr.HandleErr(ctx, errors.New("密码不正确"))
 		return
 	}
-	// todo 生成token
+	// 创建token
+	tokenString, _, err := safes.Create(strconv.FormatInt(output.Id, 10), "user", time.Now().Unix(), false)
+	if err != nil {
+		apierr.HandleErr(ctx, errors.New("创建token失败"))
+		return
+	}
 	if err := users.UserController.UpdateLoginTime(output.Id, &output); err != nil {
 		apierr.HandleErr(ctx, err)
 		return
 	}
-	apires.ResWithData(ctx, output)
+	apires.ResWithData(ctx, gin.H{
+		"token":  tokenString,
+		"result": output,
+	})
 }
 
 func UsersDetail(ctx *gin.Context) {

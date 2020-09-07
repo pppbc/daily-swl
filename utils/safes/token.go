@@ -8,9 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"dsight/common"
-	"dsight/public/logger"
 	jwt "github.com/dgrijalva/jwt-go"
+
+	"daily/cmd/common"
+	"daily/cmd/logger"
 )
 
 const (

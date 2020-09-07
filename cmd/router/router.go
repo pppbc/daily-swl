@@ -1,10 +1,11 @@
 package router
 
 import (
-	"daily/cmd/config"
 	"github.com/gin-gonic/gin"
 
+	"daily/cmd/config"
 	"daily/handler"
+	"daily/utils/middleware"
 )
 
 func InitRouter() {
@@ -13,8 +14,8 @@ func InitRouter() {
 	router.GET("/daily/login", handler.Login)
 
 	// token校验
-	//rt := router.Group("/daily", middleware.MiddlewareImpl)
-	rt := router.Group("/daily")
+	rt := router.Group("/daily", middleware.MiddlewareImpl)
+	//rt := router.Group("/daily")
 
 	// 用户相关接口
 	uGroup := rt.Group("/users")
