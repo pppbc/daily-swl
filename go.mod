@@ -11,6 +11,5 @@ require (
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	go.uber.org/zap v1.16.0
 	google.golang.org/appengine v1.6.6 // indirect
-	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
