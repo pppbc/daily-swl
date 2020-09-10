@@ -25,7 +25,7 @@ const (
 	// 日志本地路径
 	LogLocalPath = "public/logger/log"
 	// 日志默认linux路径
-	LogDefaultPath = "/root/daily/.log"
+	LogDefaultPath = "/root/.log/daily"
 
 	// 日志时间精确度（秒）
 	TimeFormat = "2006-01-02 15:04:05"
