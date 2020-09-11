@@ -11,11 +11,11 @@ import (
 func InitRouter() {
 	router := gin.Default()
 
+	router.Use(middleware.XOptions)
 	router.GET("/daily/login", handler.Login)
 
 	// token校验
 	rt := router.Group("/daily", middleware.MiddlewareImpl)
-	//rt := router.Group("/daily")
 
 	// 用户相关接口
 	uGroup := rt.Group("/users")
