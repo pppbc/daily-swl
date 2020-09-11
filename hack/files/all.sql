@@ -4,11 +4,11 @@ CREATE TABLE daily.users
 (
     id        bigint DEFAULT base_id_generator(10)  not null primary key,
     name      varchar(255) not null,
-    avatar    varchar(255) default 'http://47.98.227.139:81/user_base_avatar.jpg' not null ,
+    avatar    varchar(255) default 'http://116.62.41.19:81/base_avatar_male.jpeg' not null ,
     password  varchar(255) not null ,
     sex       int not null ,
-    create_at varchar(255) not null ,
-    login_at  varchar(255)
+    create_at int64 not null ,
+    login_at  int64
 );
 
 CREATE UNIQUE INDEX daily_users_name_uindex ON daily.users (name);
@@ -23,8 +23,8 @@ CREATE TABLE daily.issues
     finish_if    boolean,
     check_if  boolean,
     check_id  bigint,
-    create_at varchar(255) not null ,
-    update_at varchar(255)
+    create_at int64 not null ,
+    update_at int64
 );
 
 
@@ -43,5 +43,5 @@ select (
 $$ language sql strict;
 
 
-INSERT INTO daily.users(name, password, sex,create_at,login_at) values ('zhy','123456','2',current_timestamp,current_timestamp);
-INSERT INTO daily.users(name, password, sex,create_at,login_at) values ('pbc','123456','1',current_timestamp,current_timestamp);
+INSERT INTO daily.users(name, password, avatar, sex,create_at,login_at) values ('zhy','123456','http://116.62.41.19:81/base_avatar_female.jpeg','2',current_timestamp,current_timestamp);
+INSERT INTO daily.users(name, password, avatar, sex,create_at,login_at) values ('pbc','123456','http://116.62.41.19:81/base_avatar_male.jpeg','1',current_timestamp,current_timestamp);

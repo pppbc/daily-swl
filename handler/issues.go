@@ -1,12 +1,12 @@
 package handler
 
 import (
-	"errors"
-	"github.com/gin-gonic/gin"
-
 	"daily/service/issues"
 	"daily/utils/apires"
 	"daily/utils/apires/apierr"
+	"errors"
+	"github.com/gin-gonic/gin"
+	"time"
 )
 
 func IssuesCreate(ctx *gin.Context) {
@@ -15,7 +15,9 @@ func IssuesCreate(ctx *gin.Context) {
 		apierr.HandleErr(ctx, err)
 		return
 	}
-	//input.Time = time.Now().Format("2006-01-02")
+	if input.Time == "" {
+		input.Time = time.Now().Format("2006-01-02")
+	}
 	if err := issues.IssueController.Create(input); err != nil {
 		apierr.HandleErr(ctx, err)
 		return
