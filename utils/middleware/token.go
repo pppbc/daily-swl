@@ -31,7 +31,6 @@ func MiddlewareImpl(ctx *gin.Context) {
 		ctx.Abort()
 		return
 	}
-	//role := claimsMap["role"].(string)
 	userid := claimsMap["userid"].(string)
 	//if singlePoint == true {
 	//	lt := claimsMap["logintime"].(string)

@@ -15,10 +15,10 @@ func InitRouter() {
 	router.GET("/daily/login", handler.Login)
 
 	// token校验
-	rt := router.Group("/daily", middleware.MiddlewareImpl)
+	//rt := router.Group("/daily", middleware.MiddlewareImpl)
 
 	// 用户相关接口
-	uGroup := rt.Group("/users")
+	uGroup := router.Group("/users")
 	{
 		uGroup.GET("", handler.UsersDetail)
 		uGroup.POST("", handler.UsersUpdate)
@@ -26,7 +26,7 @@ func InitRouter() {
 	}
 
 	// 每日事项
-	iGroup := rt.Group("/issues")
+	iGroup := router.Group("/issues")
 	{
 		//iGroup.GET("", handler.IssuesDetail)
 		iGroup.POST("", handler.IssuesCreate)

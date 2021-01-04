@@ -20,8 +20,8 @@ func (u *userController) Get(id int64, output interface{}) error {
 func (u *userController) Update(id int64, input UserInput, output interface{}) error {
 	tx := u.db.MustBegin()
 
-	query := `UPDATE daily.users SET (name,sex) = ($1,$2) WHERE id = $3 RETURNING *;`
-	if err := tx.Get(output, query, input.Name, input.Sex, id); err != nil {
+	query := `UPDATE daily.users SET (name,password,sex) = ($1,$2,$3) WHERE id = $4 RETURNING *;`
+	if err := tx.Get(output, query, input.Name, input.Password, input.Sex, id); err != nil {
 		tx.Rollback()
 		return err
 	} else {
